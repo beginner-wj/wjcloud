@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <!--    JDBC驱动文件-->
+    <!--    <classPathEntry location="/Program Files/IBM/SQLLIB/java/db2java.zip" />-->
+
+    <context id="DB2Tables" targetRuntime="MyBatis3">
+        <property name="beginningDelimiter" value="`"/>
+        <property name="endingDelimiter" value="`"/>
+        <!-- 生成的Java文件的编码-->
+        <property name="javaFileEncoding" value="UTF-8"/>
+
+        <!-- 生成的实例添加toString方法 -->
+        <plugin type="org.mybatis.generator.plugins.ToStringPlugin" />
+        <!-- JavaBean 实现 序列化 接口 -->
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin"/>
+        <!-- 覆盖生产的xml文件 -->
+        <plugin type="org.mybatis.generator.plugins.UnmergeableXmlMappersPlugin" />
+
+        <!-- 默认false，把JDBC DECIMAL 和 NUMERIC 类型解析为 Integer，为 true 时把JDBC DECIMAL 和 NUMERIC 类型解析为java.math.BigDecimal -->
+        <commentGenerator>
+            <property name="suppressDate" value="true"/>
+            <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+
+        <!--数据库链接信息：驱动类,URL,用户名、密码 -->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://127.0.0.1:3308/cloud-eureka-db?useUnicode=true&amp;zeroDateTimeBehavior=convertToNull&amp;useSSL=true&amp;serverTimezone=GMT%2B8"
+                        userId="mysqlpwd"
+                        password="mysqlpwd">
+        </jdbcConnection>
+
+        <javaTypeResolver >
+            <property name="forceBigDecimals" value="false" />
+        </javaTypeResolver>
+
+        <!-- domain类的位置 -->
+        <javaModelGenerator targetProject="src/main/java"
+                            targetPackage="com.wj.server.domain"/>
+
+        <!-- mapper xml 的位置 -->
+        <sqlMapGenerator  targetProject="src/main/resources" targetPackage="mapper"/>
+
+
+        <!-- 生成mapper.java接口的包名和位置-->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.wj.server.mapper"
+                             targetProject="src/main/java">
+        </javaClientGenerator>
+
+
+        <!-- 要生成的表 tableName是数据库中的表名或视图名 domainObjectName是实体类名
+        enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+                enableSelectByExample="false" selectByExampleQueryId="false"
+                如果不要example 就加上注解
+        -->
+        <!--
+         <table  tableName="section" domainObjectName="Section" >
+        </table>
+         <table  tableName="course" domainObjectName="Course" >
+        </table>
+
+          <table  tableName="chapter" domainObjectName="Chapter" ></table>
+<table  tableName="section" domainObjectName="Section" />
+        <table  tableName="chapter" domainObjectName="Chapter" ></table>
+         <table  tableName="category" domainObjectName="Category" ></table>
+         <table  tableName="course_category" domainObjectName="CourseCategory" ></table>
+          <table  tableName="course_content" domainObjectName="CourseContent" ></table>
+                  <table  tableName="teacher" domainObjectName="Teacher" ></table>
+                          <table  tableName="course" domainObjectName="Course" ></table>
+ <table  tableName="user" domainObjectName="User" ></table>
+         <table  tableName="resource" domainObjectName="Resource" ></table>
+        <table  tableName="role" domainObjectName="Role" ></table>
+        <table  tableName="role_resource" domainObjectName="RoleResource" ></table>
+
+        -->
+        <table  tableName="role_user" domainObjectName="RoleUser" ></table>
+
+    </context>
+</generatorConfiguration>
+
+
